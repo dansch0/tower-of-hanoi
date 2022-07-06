@@ -4,6 +4,7 @@ from game.states.credits_menu import CreditsMenu
 from game.states.difficulty_menu import DifficultyMenu
 from game.states.main_game import MainGame
 from game.states.main_menu import MainMenu
+from game.states.name_menu import NameMenu
 
 class StateManager:
 
@@ -33,6 +34,9 @@ class StateManager:
                 s_state = state(s_state.type)
 
     def load_states(self):
+
+        # Window to choice player's name
+        self.add_state(NameMenu(GameStateType.SOLID, self.game))
         
         # Credits window
         self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
