@@ -7,8 +7,8 @@ from game.states.main_menu import MainMenu
 
 class MainGame(GameState):
 
-    def __init__(self, type, game):
-        GameState.__init__(self, type, game)
+    def __init__(self, type, game, paused = False):
+        super().__init__(type, game, paused)
 
     def update(self):
 

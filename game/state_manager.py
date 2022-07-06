@@ -1,5 +1,7 @@
 
 from game.game_state import GameStateType
+from game.states.credits_menu import CreditsMenu
+from game.states.difficulty_menu import DifficultyMenu
 from game.states.main_game import MainGame
 from game.states.main_menu import MainMenu
 
@@ -32,8 +34,14 @@ class StateManager:
 
     def load_states(self):
         
+        # Credits window
+        self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
+
         # Our main menu state
         self.add_state(MainMenu(GameStateType.SOLID, self.game))
+
+        # Chose rings window
+        self.add_state(DifficultyMenu(GameStateType.SOLID, self.game))
 
         # Main run game state
         self.add_state(MainGame(GameStateType.SOLID, self.game))
