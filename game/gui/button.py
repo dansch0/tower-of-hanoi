@@ -31,7 +31,7 @@ class Button:
         if(rect.collidepoint(mouse_pos)):
             hovered = True
             
-            if(mouse_down):
+            if(mouse_down and not self.pressed):
                 self.pressed = True
                 active = True
             else:

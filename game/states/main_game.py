@@ -1,6 +1,7 @@
 
 import pygame
 from game.constants import *
+from game.drag_manager import DragManager
 from game.game_state import *
 from game.states.main_menu import MainMenu
 
@@ -9,6 +10,8 @@ class MainGame(GameState):
 
     def __init__(self, type, game, paused = False):
         super().__init__(type, game, paused)
+
+        self.drag_manager = DragManager(game)
 
     def update(self):
 
@@ -37,7 +40,13 @@ class MainGame(GameState):
         self.game.render.render_image(ground_image, 0, self.game.WINDOW_HEIGHT-ground_size_y)
 
         # Drawing poles
+        # Left
+        self.game.render.render_image(pole_image, self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6)-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
+        # Middle
         self.game.render.render_image(pole_image, self.game.WINDOW_WIDTH/2-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
+        # Right
+        self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
+
         
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
@@ -46,6 +55,9 @@ class MainGame(GameState):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             self.game.state_manager.unpause_state(MainMenu)
+
+        # Drag system
+        self.drag_manager.update(self.game)
         
 
         

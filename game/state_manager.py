@@ -36,16 +36,16 @@ class StateManager:
     def load_states(self):
 
         # Window to choice player's name
-        self.add_state(NameMenu(GameStateType.SOLID, self.game))
+        #self.add_state(NameMenu(GameStateType.SOLID, self.game))
         
         # Credits window
-        self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
+        #self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
 
         # Our main menu state
         self.add_state(MainMenu(GameStateType.SOLID, self.game))
 
         # Chose rings window
-        self.add_state(DifficultyMenu(GameStateType.SOLID, self.game))
+        #self.add_state(DifficultyMenu(GameStateType.SOLID, self.game))
 
         # Main run game state
         self.add_state(MainGame(GameStateType.SOLID, self.game))
