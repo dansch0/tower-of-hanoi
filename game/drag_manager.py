@@ -9,7 +9,7 @@ class DragManager:
 
     def __init__(self, game):
 		
-        num_of_rings = 6
+        num_of_rings = 3
 
         # Adding all the areas
         self.add_drag_area(DragArea(0, 350, 426, 300, game))
