@@ -1,3 +1,4 @@
+from random import randint
 import pygame
 from game.drag_area import DragArea
 from game.drag_item import DragItem
@@ -10,6 +11,7 @@ class DragManager:
         self.game = game
         self.drag_areas_pack = []
         self.num_of_movements = 0
+        self.start_pole_index = randint(0, 2) # Randomizing pole begin
 
         # Adding all the areas
         self.add_drag_area(DragArea(0, 350, 426, 300, game))
@@ -21,7 +23,17 @@ class DragManager:
 
     def load_rings(self, num_of_rings):
         for i in range(num_of_rings):
-            self.drag_areas_pack[0].stack_item(DragItem(num_of_rings-i-1, "Ring"+str(num_of_rings-i), self.game))
+            self.drag_areas_pack[self.start_pole_index].stack_item(DragItem(num_of_rings-i-1, "Ring"+str(num_of_rings-i), self.game))
+
+
+    def check_win(self):
+        for i,area in enumerate(self.drag_areas_pack):
+            if(i == self.start_pole_index):
+                continue
+
+            if(len(area.item_stack) == self.game.rings_amount):
+                return True
+        return False
 
 
     def update(self, game):
@@ -49,6 +61,8 @@ class DragManager:
                     if(area_dropped.stack_item(item)):
                         area.pop_item()
                         self.num_of_movements +=1
+                        if(self.check_win()):
+                            print("Você ganhou!")
                     else:
                         print("Você não pode colocar uma anel maior em cima de um anel menor!")
 

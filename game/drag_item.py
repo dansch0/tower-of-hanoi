@@ -1,5 +1,6 @@
 
 
+from random import randint
 import pygame
 
 
@@ -7,12 +8,18 @@ class DragItem:
 
     def __init__(self, item_size, image_name, game):
         
-        self.pos_x = 0
-        self.pos_y = 0
-        self.smooth_pos_x = 0
-        self.smooth_pos_y = 0
         self.draggable = False
         self.pressed = False
+        self.pos_x = 0
+        self.pos_y = 0
+
+        # Adding random positions to create a btf effect
+        # when start game :)
+        self.smooth_pos_x = randint(500*item_size, 500*item_size+500)
+        self.smooth_pos_y = -randint(500*item_size, 500*item_size+500)
+        if(item_size%2==0):
+            self.smooth_pos_x = -self.smooth_pos_x
+    
 
         self.game = game
         self.item_size = item_size
@@ -48,8 +55,8 @@ class DragItem:
             self.pos_y = mouse_pos[1] - self.image_height/2
 
         # Smoothing
-        self.smooth_pos_x = self.smooth_pos_x-(self.smooth_pos_x-self.pos_x)/6
-        self.smooth_pos_y = self.smooth_pos_y-(self.smooth_pos_y-self.pos_y)/6
+        self.smooth_pos_x = self.smooth_pos_x-(self.smooth_pos_x-self.pos_x)/8
+        self.smooth_pos_y = self.smooth_pos_y-(self.smooth_pos_y-self.pos_y)/8
 
         # Rendering the item
         self.game.render.render_image(self.item_image, self.smooth_pos_x, self.smooth_pos_y)
