@@ -48,9 +48,7 @@ class MainGame(GameState):
         self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
 
         
-        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
-
-        self.game.render.render_text("Game", 100, 100, (245, 245, 245), font_18)
+        
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
@@ -58,6 +56,10 @@ class MainGame(GameState):
 
         # Drag system
         self.drag_manager.update(self.game)
+
+        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
+
+        self.game.render.render_text(str(self.drag_manager.num_of_movements), 100, 100, (245, 245, 245), font_18)
         
 
         
