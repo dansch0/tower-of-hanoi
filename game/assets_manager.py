@@ -7,7 +7,7 @@ class AssetsManager:
 
     assets_pack = []
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.load_assets()
 
     def add_asset(self, name, path, type, font_size=12, image_scale=1) -> None:
