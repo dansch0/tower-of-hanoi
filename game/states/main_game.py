@@ -48,8 +48,6 @@ class MainGame(GameState):
         self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
 
         
-        
-
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             self.game.state_manager.unpause_state(MainMenu)
