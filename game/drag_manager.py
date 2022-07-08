@@ -5,20 +5,23 @@ from game.drag_item import DragItem
 
 class DragManager:
 
-    drag_areas_pack = []
+    
 
     def __init__(self, game):
-		
-        num_of_rings = 3
+
+        self.drag_areas_pack = []
+
+        self.loaded_rings = False
 
         # Adding all the areas
         self.add_drag_area(DragArea(0, 350, 426, 300, game))
         self.add_drag_area(DragArea(426, 350, 426, 300, game))
         self.add_drag_area(DragArea(426*2, 350, 426, 300, game))
 
+        num_of_rings = game.rings_amount
+
         for i in range(num_of_rings):
             self.drag_areas_pack[0].stack_item(DragItem(num_of_rings-i-1, "Ring"+str(num_of_rings-i), game))
-            
 
     def update(self, game):
 		

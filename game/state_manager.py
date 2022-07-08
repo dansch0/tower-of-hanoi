@@ -8,9 +8,10 @@ from game.states.name_menu import NameMenu
 
 class StateManager:
 
-    states_stack = []
-
     def __init__(self, game):
+
+        self.states_stack = []
+
         self.game = game
 
         self.load_states()
@@ -29,9 +30,9 @@ class StateManager:
                 s_state.paused = False
     
     def reset_state(self, state):
-        for s_state in self.states_stack:
-            if(type(s_state) == state):
-                s_state = state(s_state.type)
+        for i in range(len(self.states_stack)):
+            if(type(self.states_stack[i]) == type(state)):
+                self.states_stack[i] = state
 
     def load_states(self):
 
@@ -39,13 +40,13 @@ class StateManager:
         #self.add_state(NameMenu(GameStateType.SOLID, self.game))
         
         # Credits window
-        #self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
+        self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
 
         # Our main menu state
         self.add_state(MainMenu(GameStateType.SOLID, self.game))
 
         # Chose rings window
-        #self.add_state(DifficultyMenu(GameStateType.SOLID, self.game))
+        self.add_state(DifficultyMenu(GameStateType.SOLID, self.game))
 
         # Main run game state
         self.add_state(MainGame(GameStateType.SOLID, self.game))

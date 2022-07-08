@@ -21,6 +21,8 @@ class Game:
 
     GAME_FPS_CAP = 60
 
+    rings_amount = 3
+
     # Constructor
     def __init__(self):
         
@@ -45,6 +47,7 @@ class Game:
         # ----- Loading all states -----
         self.state_manager = StateManager(self)
 
+        
     # Main loop
     def loop(self):
 
