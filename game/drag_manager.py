@@ -5,12 +5,10 @@ from game.drag_item import DragItem
 
 class DragManager:
 
-    
-
     def __init__(self, game):
 
+        self.game = game
         self.drag_areas_pack = []
-
         self.num_of_movements = 0
 
         # Adding all the areas
@@ -18,10 +16,13 @@ class DragManager:
         self.add_drag_area(DragArea(426, 350, 426, 300, game))
         self.add_drag_area(DragArea(426*2, 350, 426, 300, game))
 
-        num_of_rings = game.rings_amount
+        self.load_rings(game.rings_amount)
 
+
+    def load_rings(self, num_of_rings):
         for i in range(num_of_rings):
-            self.drag_areas_pack[0].stack_item(DragItem(num_of_rings-i-1, "Ring"+str(num_of_rings-i), game))
+            self.drag_areas_pack[0].stack_item(DragItem(num_of_rings-i-1, "Ring"+str(num_of_rings-i), self.game))
+
 
     def update(self, game):
 		
@@ -52,8 +53,6 @@ class DragManager:
                         print("Você não pode colocar uma anel maior em cima de um anel menor!")
 
                         
-
-
     def get_area_dropped(self):
 
         for area in self.drag_areas_pack:
@@ -64,6 +63,7 @@ class DragManager:
                 return area
 
         return False
+
 
     def add_drag_area(self, dragarea):
         self.drag_areas_pack.append(dragarea)
