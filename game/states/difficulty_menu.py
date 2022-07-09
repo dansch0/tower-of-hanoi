@@ -19,7 +19,7 @@ class DifficultyMenu(GameState):
         self.ring3 = Button(
             "3",
             self.font_18, 
-            640/4-125, 360, 
+            640/4*2, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -28,7 +28,7 @@ class DifficultyMenu(GameState):
         self.ring4 = Button(
             "4",
             self.font_18, 
-            640/4*2-125, 360, 
+            640/4*3, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -37,7 +37,7 @@ class DifficultyMenu(GameState):
         self.ring5 = Button(
             "5",
             self.font_18, 
-            640/4*3-125, 360, 
+            640/4*4, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -46,7 +46,7 @@ class DifficultyMenu(GameState):
         self.ring6 = Button(
             "6",
             self.font_18, 
-            640/4*4-125, 360, 
+            640/4*5, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  

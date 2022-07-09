@@ -19,7 +19,7 @@ class Game:
     # Window game title name
     WINDOW_TITLE = "Torre de Hanoi"
 
-    GAME_FPS_CAP = 60
+    GAME_FPS_CAP = 65
 
     rings_amount = 3
 
