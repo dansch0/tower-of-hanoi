@@ -1,6 +1,8 @@
 
 import pygame
 
+from game.constants import COLOR_WHITE
+
 class RenderManager:
 
     def __init__(self, window_width, window_height):
@@ -27,3 +29,9 @@ class RenderManager:
         text = font.render(text, True, color)
         text_rect = text.get_rect(center=(x, y))
         self.screen.blit(text, text_rect)
+
+    def get_text_size(self, text, font):
+        text = font.render(text, True, COLOR_WHITE)
+        text_rect = text.get_rect()
+
+        return (text_rect[2],text_rect[3])

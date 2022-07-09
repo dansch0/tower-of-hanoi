@@ -3,6 +3,7 @@ import pygame
 from game.constants import *
 from game.drag_manager import DragManager
 from game.game_state import *
+from game.notification_manager import NotificationManager
 from game.states.main_menu import MainMenu
 
 
@@ -58,6 +59,9 @@ class MainGame(GameState):
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
         self.game.render.render_text(str(self.drag_manager.num_of_movements), 100, 100, (245, 245, 245), font_18)
+
+
+        
         
 
         

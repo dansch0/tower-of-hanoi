@@ -58,7 +58,7 @@ class DifficultyMenu(GameState):
         self.game.render.fill_screen(COLOR_BACKGROUND)
 
         font = self.game.assets_manager.get_asset("PixelFont18").asset_load
-        self.game.render.render_text_centered("Escolha a quantidade de anéis para jogar", 640, 200, (245, 245, 245), font)
+        self.game.render.render_text_centered("Escolha a quantidade de anéis para jogar.", 640, 200, (245, 245, 245), font)
         self.game.render.render_text_centered("Quanto mais anéis mais difícil é ;)", 640, 250, (245, 245, 245), font)
 
         choice_number = 0

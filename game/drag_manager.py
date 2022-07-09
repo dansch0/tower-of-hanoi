@@ -2,6 +2,7 @@ from random import randint
 import pygame
 from game.drag_area import DragArea
 from game.drag_item import DragItem
+from game.notification import Notification, NotificationPosition, NotificationType
 
 
 class DragManager:
@@ -59,12 +60,25 @@ class DragManager:
 
                     # Yess, lets check if we can stack this ring
                     if(area_dropped.stack_item(item)):
+
                         area.pop_item()
                         self.num_of_movements +=1
+
                         if(self.check_win()):
-                            print("Você ganhou!")
+                            game.notification_manager.add_notification(
+                                Notification(
+                                    "Você Ganhou!", 
+                                    game, 
+                                    duration_time=8,
+                                    position=NotificationPosition.CENTER, 
+                                    type=NotificationType.BIG
+                                    ))
                     else:
-                        print("Você não pode colocar uma anel maior em cima de um anel menor!")
+                        game.notification_manager.add_notification(
+                            Notification(
+                                "Você só pode colocar anéis pequenos em cima dos grandes!", 
+                                game))
+
 
                         
     def get_area_dropped(self):

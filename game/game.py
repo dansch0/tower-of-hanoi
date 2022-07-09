@@ -3,6 +3,7 @@ import pygame
 
 from game.event_manager import EventManager
 from game.assets_manager import AssetsManager
+from game.notification_manager import NotificationManager
 from game.render_manager import RenderManager
 from game.state_manager import StateManager
 
@@ -47,7 +48,8 @@ class Game:
         # ----- Loading all states -----
         self.state_manager = StateManager(self)
 
-        
+        # ----- Loading notifications -----    
+        self.notification_manager = NotificationManager(self)
     # Main loop
     def loop(self):
 
@@ -60,6 +62,9 @@ class Game:
 
         # ----- Game states -----
         self.state_manager.update()
+
+        # Rendering all notifications
+        self.notification_manager.update()
 
         # ----- Window Render -----
         self.render.update_screen()
