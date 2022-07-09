@@ -2,7 +2,7 @@ from random import randint
 import pygame
 from game.drag_area import DragArea
 from game.drag_item import DragItem
-from game.notification import Notification, NotificationPosition, NotificationType
+from game.notification import Notification, NotificationColor, NotificationPosition, NotificationType
 
 
 class DragManager:
@@ -77,7 +77,8 @@ class DragManager:
                         game.notification_manager.add_notification(
                             Notification(
                                 "Você só pode colocar anéis pequenos em cima dos grandes!", 
-                                game))
+                                game,
+                                color=NotificationColor.RED))
 
 
                         

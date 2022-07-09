@@ -5,12 +5,10 @@ from game.constants import COLOR_WHITE
 
 
 class NotificationColor:
-    GREEN = (0,200,0)
-    RED = 1
-    BLUE = 2
-    YELLOW = 3
-    PINK = 4
-    PURPLE = 5
+    GREEN = (106, 176, 76)
+    RED = (192, 57, 43)
+    BLUE = (41, 128, 185)
+    YELLOW = (241, 196, 15)
 
 class NotificationPosition:
     TOP = 0
@@ -58,7 +56,7 @@ class Notification:
         self.text_x, self.text_y = game.render.get_text_size(text, self.font)
 
         # Setting text start pos
-        self.start_pos_y = -100
+        self.start_pos_y = -50
         self.end_pos_y = 0
 
         if(position == NotificationPosition.TOP):
@@ -69,7 +67,7 @@ class Notification:
 
         # Initing smooth vars
         self.smooth_pos_x = game.WINDOW_WIDTH/2
-        self.smooth_pos_y = -100
+        self.smooth_pos_y = -50
 
 
     def draw(self):
