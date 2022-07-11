@@ -5,8 +5,6 @@ import pygame
 
 class Button:
 
-    
-
     def __init__(self, text, font, x, y, w, h, color, color_hovered, color_actived):
         self.text = text
         self.pos_x = x
@@ -18,26 +16,6 @@ class Button:
         self.color_hovered = color_hovered
         self.color_actived = color_actived
         self.pressed = False
-        self.click_timer = 0
-
-    def check_first_click(self):
-
-        mouse_down = pygame.mouse.get_pressed()[0]
-        
-        if(mouse_down):
-            
-            if(self.click_timer == 0):
-                self.click_timer = time.time()
-
-            how_long = time.time() - self.click_timer
-
-            if(how_long <= 0):
-                return True
-            return False
-        else:
-            self.click_timer = 0
-
-        return False
         
     def draw(self, game):
 
@@ -48,7 +26,7 @@ class Button:
         # Checking button status
         rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
         mouse_pos = pygame.mouse.get_pos()
-        mouse_first_click = self.check_first_click()
+        mouse_first_click = game.event_manager.MOUSE_LEFT_CLICK
         mouse_down = pygame.mouse.get_pressed()[0]
 
         if(rect.collidepoint(mouse_pos)):

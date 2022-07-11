@@ -33,5 +33,4 @@ class RenderManager:
     def get_text_size(self, text, font):
         text = font.render(text, True, COLOR_WHITE)
         text_rect = text.get_rect()
-
         return (text_rect[2],text_rect[3])

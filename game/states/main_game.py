@@ -3,6 +3,7 @@ import pygame
 from game.constants import *
 from game.drag_manager import DragManager
 from game.game_state import *
+from game.notification import Notification
 from game.notification_manager import NotificationManager
 from game.states.main_menu import MainMenu
 
@@ -14,7 +15,14 @@ class MainGame(GameState):
 
         self.drag_manager = DragManager(game)
 
+        self.loaded_notifications = False
+
     def update(self):
+
+        if(not self.loaded_notifications):
+            self.game.notification_manager.add_notification(Notification("Para ganhar o jogo você deve empilhar todo os anéis em um pino diferente.", self.game))
+            self.game.notification_manager.add_notification(Notification("Boa sorte, Daniel!", self.game))
+            self.loaded_notifications = True
 
         # Set background
         self.game.render.fill_screen(COLOR_BACKGROUND)

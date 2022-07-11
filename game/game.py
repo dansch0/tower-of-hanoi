@@ -45,11 +45,13 @@ class Game:
         # ----- Loading all assets -----
         self.assets_manager = AssetsManager()
 
+        # ----- Loading notifications -----    
+        self.notification_manager = NotificationManager(self)
+
         # ----- Loading all states -----
         self.state_manager = StateManager(self)
 
-        # ----- Loading notifications -----    
-        self.notification_manager = NotificationManager(self)
+        
     # Main loop
     def loop(self):
 

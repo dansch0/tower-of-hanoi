@@ -13,7 +13,6 @@ class DragItem:
         self.pressed = False
         self.pos_x = 0
         self.pos_y = 0
-        self.click_timer = 0
 
         # Adding random positions to create a btf effect
         # when start game :)
@@ -29,24 +28,6 @@ class DragItem:
         self.image_width = self.item_image.get_size()[0]
         self.image_height = self.item_image.get_size()[1]
 
-    def check_first_click(self):
-
-        mouse_down = pygame.mouse.get_pressed()[0]
-        
-        if(mouse_down):
-            
-            if(self.click_timer == 0):
-                self.click_timer = time.time()
-
-            how_long = time.time() - self.click_timer
-            
-            if(how_long <= 0):
-                return True
-            return False
-        else:
-            self.click_timer = 0
-
-        return False
     
     def draw(self):
 
@@ -57,7 +38,7 @@ class DragItem:
         rect = pygame.Rect(self.pos_x, self.pos_y, self.image_width, self.image_height)
         mouse_pos = pygame.mouse.get_pos()
         mouse_down = pygame.mouse.get_pressed()[0]
-        mouse_first_click = self.check_first_click()
+        mouse_first_click = self.game.event_manager.MOUSE_LEFT_CLICK
 
         if(self.draggable):
 
