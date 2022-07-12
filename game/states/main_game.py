@@ -56,14 +56,19 @@ class MainGame(GameState):
         # Right
         self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
 
+        
+        # Drawing the ingame buttons and texts
+        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
+
+        center_pos_x = self.game.WINDOW_WIDTH/2
+        text_pos_y = 100
+
+        self.game.render.render_rect(center_pos_x-25, text_pos_y-20, 50, 40, COLOR_BACKGROUND_LIGHT)
+        self.game.render.render_text_centered(str(self.drag_manager.num_of_movements), center_pos_x, text_pos_y, (245, 245, 245), font_18)
+
+
         # Drag system
         self.drag_manager.update(self.game)
-
-        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
-        self.game.render.render_text(str(self.drag_manager.num_of_movements), 100, 100, (245, 245, 245), font_18)
-
-
-        
         
 
         
