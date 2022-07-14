@@ -21,7 +21,7 @@ class MainGame(GameState):
 
         if(not self.loaded_notifications):
             self.game.notification_manager.add_notification(Notification("Para ganhar o jogo você deve empilhar todo os anéis em um pino diferente.", self.game))
-            self.game.notification_manager.add_notification(Notification("Boa sorte, Daniel!", self.game))
+            self.game.notification_manager.add_notification(Notification(f"Boa sorte, {self.game.username}!", self.game))
             self.loaded_notifications = True
 
         # Set background

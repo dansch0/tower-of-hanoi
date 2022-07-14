@@ -12,8 +12,8 @@ class RenderManager:
     def update_screen(self):
         pygame.display.flip()
 
-    def render_rect(self, x, y, w, h, color):
-        pygame.draw.rect(self.screen, color, pygame.Rect(x, y, w, h))
+    def render_rect(self, x, y, w, h, color, line_width=0):
+        pygame.draw.rect(self.screen, color, pygame.Rect(x, y, w, h), line_width)
 
     def render_image(self, image, x, y):
         self.screen.blit(image, (x, y))

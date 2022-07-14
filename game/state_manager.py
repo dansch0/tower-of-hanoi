@@ -37,7 +37,7 @@ class StateManager:
     def load_states(self):
 
         # Window to choice player's name
-        #self.add_state(NameMenu(GameStateType.SOLID, self.game))
+        self.add_state(NameMenu(GameStateType.SOLID, self.game))
         
         # Credits window
         self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
