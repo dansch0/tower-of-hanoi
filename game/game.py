@@ -1,4 +1,5 @@
 
+import time
 import pygame
 
 from game.event_manager import EventManager
@@ -24,7 +25,7 @@ class Game:
 
     rings_amount = 3
 
-    username = "nouser"
+    username = "no_user"
 
     # Constructor
     def __init__(self):

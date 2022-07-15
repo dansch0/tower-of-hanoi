@@ -6,6 +6,7 @@ from game.constants import *
 from game.game_state import *
 from game.gui.button import Button
 from game.gui.text_box import TextBox
+from game.notification import *
 
 
 class NameMenu(GameState):
@@ -27,8 +28,8 @@ class NameMenu(GameState):
 
         self.name_box = TextBox(
             game, 
-            game.WINDOW_WIDTH/2-(400/2), 360, 
-            400, 40, 
+            game.WINDOW_WIDTH/2-(500/2), 360, 
+            500, 40, 
             COLOR_WHITE, 
             self.font_18)
 
@@ -41,7 +42,15 @@ class NameMenu(GameState):
         self.game.render.render_text_centered("Digite seu nome por favor:", 640, 220, (245, 245, 245), font)
 
         if(self.ok_button.draw(self.game)):
-            self.game.username = self.name_box.text
-            self.game.state_manager.pause_state(NameMenu)
+            text = self.name_box.text.strip()
+            if(text == ""):
+                self.game.notification_manager.add_notification(Notification(
+                    "Digite seu nome!",
+                    self.game,
+                    color=NotificationColor.RED, 
+                ))
+            else:
+                self.game.username = text.title()
+                self.game.state_manager.pause_state(NameMenu)
 
         self.name_box.draw()
