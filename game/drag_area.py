@@ -15,7 +15,7 @@ class DragArea:
 
         self.set_items_pos()
 
-        ##self.game.render.render_rect(self.pos_x, self.pos_y, self.width, self.height, (200, 30, 30, 0.2))
+        #self.game.render.render_rect(self.pos_x, self.pos_y, self.width, self.height, (200, 30, 30, 0.2))
 
     def set_items_pos(self):
 

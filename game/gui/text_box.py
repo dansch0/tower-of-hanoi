@@ -15,6 +15,15 @@ class TextBox:
         self.text = ""
         self.selected = False
 
+        self.blacklist_keys = [pygame.K_RETURN]
+
+    def is_valid_key(self, key):
+        for key_ in self.blacklist_keys:
+            if(key == key_):
+                return False
+
+        return True
+
     def draw(self):
         
         rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
@@ -38,7 +47,8 @@ class TextBox:
                     if (event.key == pygame.K_BACKSPACE):
                         self.text = self.text[:-1]
                     else:
-                        self.text += event.unicode
+                        if(self.is_valid_key(event.key)):
+                            self.text += event.unicode
 
         #   --- Rendering --- 
 
