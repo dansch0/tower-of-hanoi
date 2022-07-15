@@ -24,6 +24,7 @@ class AssetsManager:
         # Fonts
         self.add_asset("PixelFont14","fonts/pixel_font.ttf", AssetType.FONT, font_size=14)
         self.add_asset("PixelFont18","fonts/pixel_font.ttf", AssetType.FONT, font_size=18)
+        self.add_asset("PixelFont24","fonts/pixel_font.ttf", AssetType.FONT, font_size=24)
         self.add_asset("PixelFont32","fonts/pixel_font.ttf", AssetType.FONT, font_size=32)
 
         # Images

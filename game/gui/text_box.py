@@ -1,16 +1,21 @@
 
 import pygame
 
+from game.constants import *
+
 
 class TextBox:
 
-    def __init__(self, game, x, y, w, h, color, font):
+    def __init__(self, game, x, y, w, h, font, limit=0, bg_color=COLOR_BLACK, text_color=COLOR_WHITE, selected_color=COLOR_RED):
         self.pos_x = x
         self.pos_y = y
         self.width = w
         self.height = h
-        self.color = color
+        self.text_color = text_color
+        self.bg_color = bg_color
+        self.selected_color = selected_color
         self.font = font
+        self.limit = limit
         self.game = game
         self.text = ""
         self.selected = False
@@ -47,8 +52,13 @@ class TextBox:
                     if (event.key == pygame.K_BACKSPACE):
                         self.text = self.text[:-1]
                     else:
-                        if(self.is_valid_key(event.key)):
-                            self.text += event.unicode
+                        if(not self.is_valid_key(event.key)):
+                            continue
+
+                        if(self.limit > 0 and len(self.text) == self.limit):
+                            continue
+
+                        self.text += event.unicode
 
         #   --- Rendering --- 
 
@@ -60,13 +70,13 @@ class TextBox:
             input_width = text_size[0] + 20
 
         # Rectangle
-        self.game.render.render_rect(self.pos_x, self.pos_y, input_width, self.height, (30, 30, 30))
+        self.game.render.render_rect(self.pos_x, self.pos_y, input_width, self.height, self.bg_color)
 
         if(self.selected):
-            self.game.render.render_rect(self.pos_x, self.pos_y, input_width, self.height, (150, 40, 40), 2)
+            self.game.render.render_rect(self.pos_x, self.pos_y, input_width, self.height, self.selected_color, 2)
 
         # Rendering the text
-        self.game.render.render_text(self.text, self.pos_x+10, self.pos_y+text_size[1]/2, self.color, self.font)
+        self.game.render.render_text(self.text, self.pos_x+10, self.pos_y+text_size[1]/2, self.text_color, self.font)
 
         
         
