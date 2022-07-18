@@ -3,6 +3,7 @@ import pygame
 from game.constants import *
 from game.game_state import *
 from game.gui.button import Button
+from game.notification import Notification
 from game.states.credits_menu import CreditsMenu
 
 
@@ -10,6 +11,8 @@ class MainMenu(GameState):
 
     def __init__(self, type, game, paused = False):
         super().__init__(type, game, paused)
+
+        self.loaded_notifications = False
 
         # Get assets
         self.font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
@@ -43,6 +46,10 @@ class MainMenu(GameState):
             (170, 80, 20))
 
     def update(self):
+
+        if(not self.loaded_notifications):
+            self.game.notification_manager.add_notification(Notification(f"Bem-vindo, {self.game.username}!", self.game))
+            self.loaded_notifications = True
 
         self.game.render.fill_screen(COLOR_BACKGROUND_MENU)
 

@@ -21,7 +21,7 @@ class MainGame(GameState):
 
         if(not self.loaded_notifications):
             self.game.notification_manager.add_notification(Notification("Para ganhar o jogo você deve empilhar todo os anéis em um pino diferente.", self.game))
-            self.game.notification_manager.add_notification(Notification("Boa sorte, Daniel!", self.game))
+            self.game.notification_manager.add_notification(Notification(f"Boa sorte, {self.game.username}!", self.game))
             self.loaded_notifications = True
 
         # Set background
@@ -56,19 +56,18 @@ class MainGame(GameState):
         # Right
         self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
 
-        
-        # Drawing the ingame buttons and texts
-        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
-
-        center_pos_x = self.game.WINDOW_WIDTH/2
-        text_pos_y = 100
-
-        self.game.render.render_rect(center_pos_x-25, text_pos_y-20, 50, 40, COLOR_BACKGROUND_LIGHT)
-        self.game.render.render_text_centered(str(self.drag_manager.num_of_movements), center_pos_x, text_pos_y, (245, 245, 245), font_18)
-
-
         # Drag system
         self.drag_manager.update(self.game)
+
+        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
+        movements_text = str(self.drag_manager.num_of_movements)
+        text_size = self.game.render.get_text_size(movements_text, font_18)
+
+        self.game.render.render_rect(self.game.WINDOW_WIDTH/2-text_size[0]/2-15, 100, text_size[0]+30, 40, COLOR_BACKGROUND_LIGHT)
+        self.game.render.render_text_centered(str(self.drag_manager.num_of_movements), self.game.WINDOW_WIDTH/2, 120, (245, 245, 245), font_18)
+
+
+        
         
 
         

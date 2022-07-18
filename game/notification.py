@@ -71,7 +71,7 @@ class Notification:
 
 
     def draw(self):
-
+        
         # Getting time
         if(self.timer == 0):
             self.timer = time.time()

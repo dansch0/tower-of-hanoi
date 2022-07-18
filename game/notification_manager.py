@@ -7,8 +7,6 @@ class NotificationManager:
 
         self.notifications_stack = []
 
-        self.add_notification(Notification("Bem-vindo, Daniel!", game))
-
     def update(self):
         
         if(len(self.notifications_stack)>0):

@@ -1,4 +1,5 @@
 
+import time
 import pygame
 
 from game.event_manager import EventManager
@@ -23,6 +24,8 @@ class Game:
     GAME_FPS_CAP = 65
 
     rings_amount = 3
+
+    username = "no_user"
 
     # Constructor
     def __init__(self):
