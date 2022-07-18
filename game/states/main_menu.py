@@ -4,7 +4,7 @@ from game.constants import *
 from game.game_state import *
 from game.gui.button import Button
 from game.notification import Notification
-from game.states.credits_menu import CreditsMenu
+from game.states.scoreboard_menu import ScoreboardMenu
 
 
 class MainMenu(GameState):
@@ -28,7 +28,7 @@ class MainMenu(GameState):
             (190, 90, 20),  
             (170, 80, 20))
 
-        self.credits_button = Button(
+        self.score_button = Button(
             game,
             "PLACAR",
             self.font_18, 
@@ -63,8 +63,8 @@ class MainMenu(GameState):
             self.game.state_manager.pause_state("MainMenu")
             self.game.state_manager.unpause_state("DifficultyMenu")
 
-        if(self.credits_button.draw()):
-            self.game.state_manager.unpause_state("CreditsMenu")
+        if(self.score_button.draw()):
+            self.game.state_manager.unpause_state("ScoreboardMenu")
 
         if(self.exit_button.draw()):
             self.game.quit_game = True

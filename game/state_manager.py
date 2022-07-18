@@ -1,6 +1,6 @@
 
 from game.game_state import GameStateType
-from game.states.credits_menu import CreditsMenu
+from game.states.scoreboard_menu import ScoreboardMenu
 from game.states.difficulty_menu import DifficultyMenu
 from game.states.main_game import MainGame
 from game.states.main_menu import MainMenu
@@ -40,7 +40,7 @@ class StateManager:
         self.add_state(NameMenu(GameStateType.SOLID, self.game))
         
         # Credits window
-        self.add_state(CreditsMenu(GameStateType.SOLID, self.game, paused = True))
+        self.add_state(ScoreboardMenu(GameStateType.SOLID, self.game, paused = True))
 
         # Our main menu state
         self.add_state(MainMenu(GameStateType.SOLID, self.game))
