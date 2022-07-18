@@ -5,9 +5,10 @@ class EventManager:
 
     CLOSE_GAME_BUTTON = False
     MOUSE_LEFT_CLICK = False
+    MOUSE_RIGHT_CLICK = False
+
 
     def __init__(self):
-        print("Event manager start")
         self.events_pack = []
 
     def update(self):
@@ -15,6 +16,7 @@ class EventManager:
         self.events_pack = []
 
         self.MOUSE_LEFT_CLICK = False
+        self.MOUSE_RIGHT_CLICK = False
 
         for event in pygame.event.get():
 
@@ -24,7 +26,10 @@ class EventManager:
                 self.CLOSE_GAME_BUTTON = True
                 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.MOUSE_LEFT_CLICK = True
+                if(event.button == 1):
+                    self.MOUSE_LEFT_CLICK = True
+                if(event.button == 3):
+                    self.MOUSE_RIGHT_CLICK = True
 
             
 

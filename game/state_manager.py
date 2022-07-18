@@ -19,14 +19,14 @@ class StateManager:
     def add_state(self, state):
         self.states_stack.append(state)
 
-    def pause_state(self, state):
+    def pause_state(self, name):
         for s_state in self.states_stack:
-            if(type(s_state) == state):
+            if(type(s_state).__name__ == name):
                 s_state.paused = True
 
-    def unpause_state(self, state):
+    def unpause_state(self, name):
         for s_state in self.states_stack:
-            if(type(s_state) == state):
+            if(type(s_state).__name__ == name):
                 s_state.paused = False
     
     def reset_state(self, state):

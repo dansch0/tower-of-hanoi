@@ -5,7 +5,8 @@ import pygame
 
 class Button:
 
-    def __init__(self, text, font, x, y, w, h, color, color_hovered, color_actived):
+    def __init__(self, game, text, font, x, y, w, h, color, color_hovered, color_actived):
+        self.game = game
         self.text = text
         self.pos_x = x
         self.pos_y = y
@@ -17,7 +18,7 @@ class Button:
         self.color_actived = color_actived
         self.pressed = False
         
-    def draw(self, game):
+    def draw(self):
 
         clicked = False
         hover = False
@@ -26,7 +27,7 @@ class Button:
         # Checking button status
         rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
         mouse_pos = pygame.mouse.get_pos()
-        mouse_first_click = game.event_manager.MOUSE_LEFT_CLICK
+        mouse_first_click = self.game.event_manager.MOUSE_LEFT_CLICK
         mouse_down = pygame.mouse.get_pressed()[0]
 
         if(rect.collidepoint(mouse_pos)):
@@ -51,7 +52,7 @@ class Button:
         if(active):   button_color = self.color_actived
 
         # Drawing button
-        game.render.render_rect(
+        self.game.render.render_rect(
             self.pos_x, 
             self.pos_y, 
             self.width, 
@@ -59,7 +60,7 @@ class Button:
             button_color)
 
         # Drawing text
-        game.render.render_text_centered(
+        self.game.render.render_text_centered(
             self.text, 
             self.pos_x+(self.width/2), 
             self.pos_y+(self.height/2), 

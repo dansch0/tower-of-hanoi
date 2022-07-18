@@ -18,6 +18,7 @@ class NameMenu(GameState):
 
         # Initing all buttons
         self.ok_button = Button(
+            game,
             "OK",
             self.font_18, 
             640-125, 380, 
@@ -45,7 +46,7 @@ class NameMenu(GameState):
         self.game.render.render_text_centered("Quem é?", 640, 160, (245, 245, 245), font24)
         self.game.render.render_text_centered("Digite seu nome por favor:", 640, 220, (245, 245, 245), font18)
 
-        if(self.ok_button.draw(self.game)):
+        if(self.ok_button.draw()):
             text = self.name_box.text.strip()
             if(text == ""):
                 self.game.notification_manager.add_notification(Notification(
@@ -61,6 +62,6 @@ class NameMenu(GameState):
                 ))
             else:
                 self.game.username = text.title()
-                self.game.state_manager.pause_state(NameMenu)
+                self.game.state_manager.pause_state("NameMenu")
 
         self.name_box.draw()

@@ -19,6 +19,7 @@ class MainMenu(GameState):
 
         # Initing all buttons
         self.start_button = Button(
+            game,
             "INICIAR",
             self.font_18, 
             640-125, 360-80, 
@@ -28,7 +29,8 @@ class MainMenu(GameState):
             (170, 80, 20))
 
         self.credits_button = Button(
-            "CRÉDITOS",
+            game,
+            "PLACAR",
             self.font_18, 
             640-125, 360, 
             250, 60, 
@@ -37,6 +39,7 @@ class MainMenu(GameState):
             (170, 80, 20))
 
         self.exit_button = Button(
+            game,
             "SAIR",
             self.font_18, 
             640-125, 360+80, 
@@ -56,12 +59,13 @@ class MainMenu(GameState):
         font_32 = self.game.assets_manager.get_asset("PixelFont32").asset_load
         self.game.render.render_text_centered("HANOI'S TOWER", 640, 200, (245, 245, 245), font_32)
 
-        if(self.start_button.draw(self.game)):
-            self.game.state_manager.pause_state(MainMenu)
+        if(self.start_button.draw()):
+            self.game.state_manager.pause_state("MainMenu")
+            self.game.state_manager.unpause_state("DifficultyMenu")
 
-        if(self.credits_button.draw(self.game)):
-            self.game.state_manager.unpause_state(CreditsMenu)
+        if(self.credits_button.draw()):
+            self.game.state_manager.unpause_state("CreditsMenu")
 
-        if(self.exit_button.draw(self.game)):
+        if(self.exit_button.draw()):
             self.game.quit_game = True
             

@@ -25,7 +25,7 @@ class Game:
 
     rings_amount = 3
 
-    username = "no_user"
+    username = "nouser"
 
     # Constructor
     def __init__(self):

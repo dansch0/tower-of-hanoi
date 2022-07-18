@@ -3,6 +3,7 @@ import pygame
 from game.constants import *
 from game.drag_manager import DragManager
 from game.game_state import *
+from game.gui.button import Button
 from game.notification import Notification
 from game.notification_manager import NotificationManager
 from game.states.main_menu import MainMenu
@@ -16,6 +17,18 @@ class MainGame(GameState):
         self.drag_manager = DragManager(game)
 
         self.loaded_notifications = False
+
+        self.font_14 = self.game.assets_manager.get_asset("PixelFont14").asset_load
+
+        self.back_button = Button(
+            game,
+            "Desisto!",
+            self.font_14, 
+            1000, 105, 
+            130, 35, 
+            COLOR_BACKGROUND_LIGHT,
+            COLOR_MAIN,  
+            COLOR_MAIN_DARK)
 
     def update(self):
 
@@ -56,9 +69,12 @@ class MainGame(GameState):
         # Right
         self.game.render.render_image(pole_image, (self.game.WINDOW_WIDTH/3-(self.game.WINDOW_WIDTH/6))*5-pole_size_x/2, self.game.WINDOW_HEIGHT-ground_size_y-pole_size_y+12)
 
-        # Drag system
-        self.drag_manager.update(self.game)
+        # Drawing buttons
+        if(self.back_button.draw()):
+            self.game.state_manager.pause_state("MainGame")
+            self.game.state_manager.unpause_state("MainMenu")
 
+        # Text
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
         movements_text = str(self.drag_manager.num_of_movements)
         text_size = self.game.render.get_text_size(movements_text, font_18)
@@ -66,6 +82,8 @@ class MainGame(GameState):
         self.game.render.render_rect(self.game.WINDOW_WIDTH/2-text_size[0]/2-15, 100, text_size[0]+30, 40, COLOR_BACKGROUND_LIGHT)
         self.game.render.render_text_centered(str(self.drag_manager.num_of_movements), self.game.WINDOW_WIDTH/2, 120, (245, 245, 245), font_18)
 
+        # Drag system
+        self.drag_manager.update(self.game)
 
         
         
