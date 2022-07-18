@@ -15,11 +15,15 @@ class DifficultyMenu(GameState):
         # Get assets
         self.font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
+        buttons_padding = 20
+        buttons_width = 100
+        btns_point_base = game.WINDOW_WIDTH/2 - (buttons_width*4/2) - (buttons_padding*3/2)
+
         # Initing all buttons
         self.ring3 = Button(
             "3",
             self.font_18, 
-            640/4*2, 360, 
+            btns_point_base+(buttons_width+buttons_padding)*0, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -28,7 +32,7 @@ class DifficultyMenu(GameState):
         self.ring4 = Button(
             "4",
             self.font_18, 
-            640/4*3, 360, 
+            btns_point_base+(buttons_width+buttons_padding)*1, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -37,7 +41,7 @@ class DifficultyMenu(GameState):
         self.ring5 = Button(
             "5",
             self.font_18, 
-            640/4*4, 360, 
+            btns_point_base+(buttons_width+buttons_padding)*2, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  
@@ -46,7 +50,7 @@ class DifficultyMenu(GameState):
         self.ring6 = Button(
             "6",
             self.font_18, 
-            640/4*5, 360, 
+            btns_point_base+(buttons_width+buttons_padding)*3, 360, 
             100, 60, 
             (200, 100, 30),
             (190, 90, 20),  

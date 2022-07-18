@@ -60,7 +60,11 @@ class MainGame(GameState):
         self.drag_manager.update(self.game)
 
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
-        self.game.render.render_text(str(self.drag_manager.num_of_movements), 100, 100, (245, 245, 245), font_18)
+        movements_text = str(self.drag_manager.num_of_movements)
+        text_size = self.game.render.get_text_size(movements_text, font_18)
+
+        self.game.render.render_rect(self.game.WINDOW_WIDTH/2-text_size[0]/2-15, 100, text_size[0]+30, 40, COLOR_BACKGROUND_LIGHT)
+        self.game.render.render_text_centered(str(self.drag_manager.num_of_movements), self.game.WINDOW_WIDTH/2, 120, (245, 245, 245), font_18)
 
 
         
