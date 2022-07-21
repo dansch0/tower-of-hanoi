@@ -1,6 +1,7 @@
 
 import time
 import pygame
+from game.config_manager import ConfigManager
 
 from game.event_manager import EventManager
 from game.assets_manager import AssetsManager
@@ -21,10 +22,13 @@ class Game:
     # Window game title name
     WINDOW_TITLE = "Torre de Hanoi"
 
+    # Frame rate limit
     GAME_FPS_CAP = 65
 
+    # Default num os rings
     rings_amount = 3
 
+    # Initial username
     username = "nouser"
 
     # Constructor
@@ -54,6 +58,8 @@ class Game:
         # ----- Loading all states -----
         self.state_manager = StateManager(self)
 
+        # ----- Scoreboard configs -----
+        self.config_manager = ConfigManager()
         
     # Main loop
     def loop(self):
