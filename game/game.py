@@ -85,4 +85,5 @@ class Game:
 
     # Disposing
     def quit(self):
+        
         pygame.quit()

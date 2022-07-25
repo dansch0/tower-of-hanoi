@@ -57,13 +57,14 @@ class DragManager:
                     # lets check if the dropped area is te same origin area
                     if(area_dropped == area):
                         continue
+                    
+                    self.num_of_movements +=1
 
                     # Yess, lets check if we can stack this ring
                     if(area_dropped.stack_item(item)):
 
                         area.pop_item()
-                        self.num_of_movements +=1
-
+                        
                         if(self.check_win()):
                             game.notification_manager.add_notification(
                                 Notification(
