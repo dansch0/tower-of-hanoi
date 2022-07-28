@@ -92,7 +92,6 @@ class ConfigManager:
         return sorted(list, key=lambda x: x[1], reverse=False)
 
 
-    #newlist = sorted(ut, key=lambda x: x.count, reverse=True)
     # Read the file and save in the memory all the scores
     def get_score_data(self):
 
