@@ -1,5 +1,4 @@
 
-import time
 import pygame
 from game.config_manager import ConfigManager
 
@@ -85,5 +84,7 @@ class Game:
 
     # Disposing
     def quit(self):
+
         self.config_manager.save_score_data()
+
         pygame.quit()

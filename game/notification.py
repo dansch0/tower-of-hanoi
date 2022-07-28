@@ -18,7 +18,6 @@ class NotificationType:
     NORMAL = 0
     BIG = 1
 
-
 class Notification:
 
     def __init__(
