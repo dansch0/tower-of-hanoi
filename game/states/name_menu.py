@@ -63,5 +63,6 @@ class NameMenu(GameState):
             else:
                 self.game.username = text.title()
                 self.game.state_manager.pause_state("NameMenu")
+                self.game.config_manager.check_name(self.game.username)
 
         self.name_box.draw()

@@ -24,6 +24,11 @@ class RenderManager:
     def render_text(self, text, x, y, color, font):
         text_surface = font.render(text, False, color)
         self.screen.blit(text_surface, (x,y))
+
+    def render_text_right(self, text, x, y, color, font):
+        text_surface = font.render(text, False, color)
+        text_rect = text_surface.get_rect()
+        self.screen.blit(text_surface, (x-text_rect[2],y))
     
     def render_text_centered(self, text, x, y, color, font):
         text = font.render(text, True, color)

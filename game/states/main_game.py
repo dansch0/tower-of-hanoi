@@ -18,17 +18,28 @@ class MainGame(GameState):
 
         self.loaded_notifications = False
 
-        self.font_14 = self.game.assets_manager.get_asset("PixelFont14").asset_load
+        font_14 = self.game.assets_manager.get_asset("PixelFont14").asset_load
+        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
         self.back_button = Button(
             game,
             "Desisto!",
-            self.font_14, 
+            font_14, 
             1000, 105, 
             130, 35, 
             COLOR_BACKGROUND_LIGHT,
             COLOR_MAIN,  
             COLOR_MAIN_DARK)
+
+        self.backmenu_button = Button(
+            game,
+            "Voltar",
+            font_18, 
+            640-125, 500, 
+            250, 60, 
+            COLOR_MAIN,
+            COLOR_MAIN_DARK,  
+            COLOR_MAIN_DARKER)
 
     def update(self):
 
@@ -36,6 +47,28 @@ class MainGame(GameState):
             self.game.notification_manager.add_notification(Notification("Para ganhar o jogo você deve empilhar todo os anéis em um pino diferente.", self.game))
             self.game.notification_manager.add_notification(Notification(f"Boa sorte, {self.game.username}!", self.game))
             self.loaded_notifications = True
+
+        if(self.drag_manager.win_game):
+            self.win_window()
+        else:
+            self.ingame_window()
+
+    def win_window(self):
+
+        # Set background
+        self.game.render.fill_screen(COLOR_BACKGROUND)
+
+        font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
+
+        self.game.render.render_text_centered(f"Você ganhou o jogo com {self.drag_manager.num_of_movements} movimentos!", self.game.WINDOW_WIDTH/2, 120, (245, 245, 245), font_18)
+
+        if(self.backmenu_button.draw()):
+            self.game.state_manager.pause_state("MainGame")
+            self.game.state_manager.unpause_state("MainMenu")
+
+
+
+    def ingame_window(self):
 
         # Set background
         self.game.render.fill_screen(COLOR_BACKGROUND)
@@ -84,6 +117,8 @@ class MainGame(GameState):
 
         # Drag system
         self.drag_manager.update(self.game)
+
+        
 
         
         

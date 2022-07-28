@@ -13,6 +13,7 @@ class DragManager:
         self.drag_areas_pack = []
         self.num_of_movements = 0
         self.start_pole_index = randint(0, 2) # Randomizing pole begin
+        self.win_game = False
 
         # Adding all the areas
         self.add_drag_area(DragArea(0, 350, 426, 300, game))
@@ -66,11 +67,19 @@ class DragManager:
                         area.pop_item()
                         
                         if(self.check_win()):
+                            self.win_game = True
+
+                            self.game.config_manager.update_score(
+                                self.game.username, 
+                                self.game.rings_amount, 
+                                self.num_of_movements
+                                )
+
                             game.notification_manager.add_notification(
                                 Notification(
                                     "Você Ganhou!", 
                                     game, 
-                                    duration_time=8,
+                                    duration_time=3,
                                     position=NotificationPosition.CENTER, 
                                     type=NotificationType.BIG
                                     ))
