@@ -61,7 +61,7 @@ class MainGame(GameState):
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
         self.game.render.render_text_centered(
-            f"Você realizou {self.drag_manager.num_of_movements} movimentos com {self.game.rings_amount} anéis", 
+            f"Você realizou {self.drag_manager.num_of_movements} movimentos com {self.game.rings_amount} anéis para ganhar o jogo!", 
             self.game.WINDOW_WIDTH/2, 220, 
             (245, 245, 245), 
             font_18)
