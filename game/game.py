@@ -82,6 +82,9 @@ class Game:
         # Limiting the frame rate
         self.clock.tick(self.GAME_FPS_CAP)
 
+        # Set the window title to show fps
+        pygame.display.set_caption(self.WINDOW_TITLE+f" ({int(self.clock.get_fps())}fps)")
+
     # Disposing
     def quit(self):
 

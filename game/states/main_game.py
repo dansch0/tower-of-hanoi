@@ -60,11 +60,15 @@ class MainGame(GameState):
 
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load
 
-        self.game.render.render_text_centered(f"Você ganhou o jogo com {self.drag_manager.num_of_movements} movimentos!", self.game.WINDOW_WIDTH/2, 120, (245, 245, 245), font_18)
+        self.game.render.render_text_centered(
+            f"Você realizou {self.drag_manager.num_of_movements} movimentos com {self.game.rings_amount} anéis", 
+            self.game.WINDOW_WIDTH/2, 220, 
+            (245, 245, 245), 
+            font_18)
 
         if(self.backmenu_button.draw()):
             self.game.state_manager.pause_state("MainGame")
-            self.game.state_manager.unpause_state("MainMenu")
+            self.game.state_manager.unpause_state("MainMenu", reset_notifications=True)
 
 
 
@@ -105,7 +109,7 @@ class MainGame(GameState):
         # Drawing buttons
         if(self.back_button.draw()):
             self.game.state_manager.pause_state("MainGame")
-            self.game.state_manager.unpause_state("MainMenu")
+            self.game.state_manager.unpause_state("MainMenu", reset_notifications=True)
 
         # Text
         font_18 = self.game.assets_manager.get_asset("PixelFont18").asset_load

@@ -19,17 +19,29 @@ class StateManager:
     def add_state(self, state):
         self.states_stack.append(state)
 
-    def pause_state(self, name):
+    def pause_state(self, name, reset_notifications=False):
+
+        if(reset_notifications):
+            self.game.notification_manager.stop_all_notifications()
+
         for s_state in self.states_stack:
             if(type(s_state).__name__ == name):
                 s_state.paused = True
 
-    def unpause_state(self, name):
+    def unpause_state(self, name, reset_notifications=False):
+
+        if(reset_notifications):
+            self.game.notification_manager.stop_all_notifications()
+
         for s_state in self.states_stack:
             if(type(s_state).__name__ == name):
                 s_state.paused = False
     
-    def reset_state(self, state):
+    def reset_state(self, state, reset_notifications=False):
+
+        if(reset_notifications):
+            self.game.notification_manager.stop_all_notifications()
+
         for i in range(len(self.states_stack)):
             if(type(self.states_stack[i]) == type(state)):
                 self.states_stack[i] = state

@@ -79,7 +79,7 @@ class DragManager:
                                 Notification(
                                     "Você Ganhou!", 
                                     game, 
-                                    duration_time=3,
+                                    duration_time=9999,
                                     position=NotificationPosition.CENTER, 
                                     type=NotificationType.BIG
                                     ))

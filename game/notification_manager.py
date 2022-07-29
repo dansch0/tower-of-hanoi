@@ -16,6 +16,9 @@ class NotificationManager:
             if(self.notifications_stack[0].finished):
                 self.notifications_stack.pop(0)
 
+    def stop_all_notifications(self):
+        self.notifications_stack = []
+
     def add_notification(self, notification):
 
         for noti in self.notifications_stack:

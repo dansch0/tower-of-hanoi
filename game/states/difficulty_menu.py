@@ -83,5 +83,5 @@ class DifficultyMenu(GameState):
         if(choice_number != 0):
             self.game.rings_amount = choice_number
             self.game.state_manager.pause_state("DifficultyMenu")
-            self.game.state_manager.reset_state(MainGame(GameStateType.SOLID, self.game))
+            self.game.state_manager.reset_state(MainGame(GameStateType.SOLID, self.game), reset_notifications=True)
             
