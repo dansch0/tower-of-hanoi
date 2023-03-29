@@ -1,4 +1,4 @@
-# Tower Of Hanoi
+# Tower of Hanoi
 This is a simple college project where I had to create the game "Tower of Hanoi" using Python.
 
 The game itself is not finished, feel free to contribute to the project if you want.
